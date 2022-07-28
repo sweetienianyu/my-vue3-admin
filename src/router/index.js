@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { UserLayout } from "@/layouts"
+import { UserLayout, BasicLayout } from "@/layouts"
 import Home from "../views/Home.vue";
 
 const routes = [
@@ -33,7 +33,13 @@ const routes = [
         component: () => import(/* webpackChunkName: "registet" */ "@/views/user/Register.vue"),
       }
     ]
+  },
+  {
+    path: '/basic',
+    name: 'Basic',
+    component: BasicLayout
   }
+   
 ];
 
 const router = createRouter({

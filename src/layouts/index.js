@@ -1,2 +1,4 @@
 import UserLayout from './UserLayout'
-export { UserLayout }
+import BasicLayout from './BasicLayout'
+
+export { UserLayout, BasicLayout }

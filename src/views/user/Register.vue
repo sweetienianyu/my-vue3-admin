@@ -1,6 +1,6 @@
 <template>
   <div id="register">
-    <a-form>
+    <a-form size="large" :model="formState">
       <a-form-item
         name="Email"
         :rules="[{ required: true, message: 'Please input your email!' }]"
@@ -25,22 +25,21 @@
         name="Phone"
         :rules="[{ required: true, message: 'Please input your phone number!' }]"
       >
-        <div class="">
-            <a-select>
+        <div class="phone-inner-wrapper">
+            <a-select class="phone-area" v-model:value="formState.phone_area_code">
                 <a-select-option value="+86">+86</a-select-option>
                 <a-select-option value="+87">+87</a-select-option>
             </a-select>
+            <a-input v-model:value="formState.phone_number" placeholder="手机号"></a-input>
         </div>
-        <a-input v-model:value="formState.email" placeholder="账户:admin"></a-input>
       </a-form-item>
-      <div>
-        <div class="verify-code"></div>
-        <div class="get-code-btn"></div>
+      <div class="code-inner-wrapper">
+        <a-input class="verify-code" v-model:value="formState.verify_code" placeholder="验证码"/>
+        <a-button class="get-code-btn" type="primary">获取验证码</a-button>
       </div>
-      
-      <div>
-        <a-button>注册</a-button>
-        <div class="">使用已有账户登录</div>
+      <div class="btn-area">
+        <a-button type="primary" block class="register-btn">注册</a-button>
+        <div class="exist-login">使用已有账户登录</div>
       </div>
     </a-form>
   </div>
@@ -54,20 +53,33 @@ const formState = ref({
   email: "",
   password: "",
   confirm_pwd: "",
+  phone_area_code: "+86",
   phone_number: "",
   verify_code: ""
 });
 </script>
 
 <style lang="scss" scoped>
-.custom {
-    padding: 12px 0px;
+.phone-inner-wrapper {
+    display: flex;
+    align-items: center;
+}
+.phone-area {
+    width: 80px;
+}
+.code-inner-wrapper {
+    display: flex;
+    align-items: center;
+}
+.btn-area {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .forget-password {
-        color: blue;
-        font-size: 14px;
-    }
+}
+.register-btn {
+    width: 120px;
+}
+.exist-login {
+    color: blue;
 }
 </style>
